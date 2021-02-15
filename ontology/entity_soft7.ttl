@@ -1,0 +1,214 @@
+@prefix : <http://www.quaat.com/ontologies#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.quaat.com/ontologies> .
+
+<http://www.quaat.com/ontologies> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.quaat.com/ontologies#description
+:description rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf :dimension ;
+             rdfs:domain :Dimension ;
+             rdfs:range [ rdf:type owl:Restriction ;
+                          owl:onProperty :dp_dimension_description ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:string
+                        ] .
+
+
+###  http://www.quaat.com/ontologies#dimension
+:dimension rdf:type owl:ObjectProperty ;
+           rdfs:domain :Entity ;
+           rdfs:range :Dimension .
+
+
+###  http://www.quaat.com/ontologies#dimensionRef
+:dimensionRef rdf:type owl:ObjectProperty ;
+              rdfs:domain :Shape ;
+              rdfs:range :Dimension .
+
+
+###  http://www.quaat.com/ontologies#hasDimension
+:hasDimension rdf:type owl:ObjectProperty ;
+              rdfs:domain :Property ;
+              rdfs:range :Dimension .
+
+
+###  http://www.quaat.com/ontologies#hasShape
+:hasShape rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :property ;
+          rdf:type owl:FunctionalProperty ,
+                   owl:InverseFunctionalProperty ;
+          rdfs:domain :Property ;
+          rdfs:range :Shape .
+
+
+###  http://www.quaat.com/ontologies#hasUri
+:hasUri rdf:type owl:ObjectProperty ,
+                 owl:FunctionalProperty ,
+                 owl:InverseFunctionalProperty ;
+        rdfs:domain :Entity ;
+        rdfs:range :Uri .
+
+
+###  http://www.quaat.com/ontologies#id
+:id rdf:type owl:ObjectProperty ;
+    rdfs:subPropertyOf :dimension ;
+    rdfs:domain :Dimension ;
+    rdfs:range [ rdf:type owl:Restriction ;
+                 owl:onProperty :dp_dimension_id ;
+                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                 owl:onDataRange xsd:string
+               ] .
+
+
+###  http://www.quaat.com/ontologies#property
+:property rdf:type owl:ObjectProperty ;
+          rdfs:domain :Entity ;
+          rdfs:range :Property .
+
+
+###  http://www.quaat.com/ontologies#shape_dimension
+:shape_dimension rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf :shape_property ;
+                 rdf:type owl:FunctionalProperty ;
+                 rdfs:domain :Shape ;
+                 rdfs:range :Dimension ;
+                 rdfs:label "dimension"@en .
+
+
+###  http://www.quaat.com/ontologies#shape_next
+:shape_next rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :shape_property ;
+            rdf:type owl:FunctionalProperty ;
+            rdfs:domain :Shape ;
+            rdfs:range :Shape ;
+            rdfs:label "next"@en .
+
+
+###  http://www.quaat.com/ontologies#shape_property
+:shape_property rdf:type owl:ObjectProperty ;
+                rdfs:subPropertyOf :property ;
+                rdfs:label "shape"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d
+:OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d rdf:type owl:DatatypeProperty ;
+                                                      rdfs:label "properties"@en .
+
+
+###  http://www.quaat.com/ontologies#dp_dimension_description
+:dp_dimension_description rdf:type owl:DatatypeProperty ;
+                          rdfs:domain :Dimension ;
+                          rdfs:range xsd:string .
+
+
+###  http://www.quaat.com/ontologies#dp_dimension_id
+:dp_dimension_id rdf:type owl:DatatypeProperty .
+
+
+###  http://www.quaat.com/ontologies#dp_uri
+:dp_uri rdf:type owl:DatatypeProperty ;
+        rdfs:domain :Entity ;
+        rdfs:range xsd:anyURI ;
+        rdfs:label "uri"@en .
+
+
+###  http://www.quaat.com/ontologies#property_description
+:property_description rdf:type owl:DatatypeProperty ;
+                      rdfs:subPropertyOf :OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d ;
+                      rdfs:domain :Property ;
+                      rdfs:range xsd:string ;
+                      rdfs:label "description"@en .
+
+
+###  http://www.quaat.com/ontologies#property_label
+:property_label rdf:type owl:DatatypeProperty ;
+                rdfs:subPropertyOf :OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d ;
+                rdfs:domain :Property ;
+                rdfs:range xsd:string ;
+                rdfs:label "label"@en .
+
+
+###  http://www.quaat.com/ontologies#property_type
+:property_type rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d ;
+               rdfs:domain :Property ;
+               rdfs:range xsd:string ;
+               rdfs:label "type"@en .
+
+
+###  http://www.quaat.com/ontologies#property_unit
+:property_unit rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d ;
+               rdfs:domain :Property ;
+               rdfs:range xsd:string ;
+               rdfs:label "unit"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.quaat.com/ontologies#Dimension
+:Dimension rdf:type owl:Class .
+
+
+###  http://www.quaat.com/ontologies#Entity
+:Entity rdf:type owl:Class ;
+        rdfs:subClassOf [ owl:intersectionOf ( [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :dimension ;
+                                                 owl:someValuesFrom :Dimension
+                                               ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :property ;
+                                                 owl:someValuesFrom :Property
+                                               ]
+                                               [ rdf:type owl:Restriction ;
+                                                 owl:onProperty :dp_uri ;
+                                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                                 owl:onDataRange xsd:anyURI
+                                               ]
+                                             ) ;
+                          rdf:type owl:Class
+                        ] .
+
+
+###  http://www.quaat.com/ontologies#Property
+:Property rdf:type owl:Class .
+
+
+###  http://www.quaat.com/ontologies#Shape
+:Shape rdf:type owl:Class .
+
+
+###  http://www.quaat.com/ontologies#Uri
+:Uri rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Dimension
+                :Entity
+                :Property
+                :Shape
+                :Uri
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

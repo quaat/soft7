@@ -1,0 +1,393 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.quaat.com/ontologies#"
+     xml:base="http://www.quaat.com/ontologies"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:ontologies="http://www.quaat.com/ontologies#">
+    <owl:Ontology rdf:about="http://www.quaat.com/ontologies"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLObjectProperty_2eed8926_2dc4_4755_9e7f_d7e860675e3a -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#OWLObjectProperty_2eed8926_2dc4_4755_9e7f_d7e860675e3a">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLObjectProperty_c7d33c0e_3f83_4a6e_91c4_ab60bc923e2b"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <rdfs:label xml:lang="en">next</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLObjectProperty_c7d33c0e_3f83_4a6e_91c4_ab60bc923e2b -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#OWLObjectProperty_c7d33c0e_3f83_4a6e_91c4_ab60bc923e2b">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#property"/>
+        <rdfs:label xml:lang="en">shape</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLObjectProperty_fd29e265_961b_4c18_98c0_b5b982906602 -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#OWLObjectProperty_fd29e265_961b_4c18_98c0_b5b982906602">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLObjectProperty_c7d33c0e_3f83_4a6e_91c4_ab60bc923e2b"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <rdfs:label xml:lang="en">dimension</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#description -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#description">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#dimension"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.quaat.com/ontologies#dimension_description"/>
+                <owl:maxQualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:maxQualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#dimension -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#dimension"/>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#hasDimension -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#hasDimension">
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#hasShape -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#hasShape">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#property"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#id -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#id">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#dimension"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <rdfs:range>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.quaat.com/ontologies#dimension_id"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+            </owl:Restriction>
+        </rdfs:range>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#property -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#property">
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Entity"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Property"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#uri -->
+
+    <owl:ObjectProperty rdf:about="http://www.quaat.com/ontologies#uri">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#InverseFunctionalProperty"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Entity"/>
+        <rdfs:range rdf:resource="http://www.quaat.com/ontologies#Uri"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_0da10d73_e01e_4c37_9ddc_17603e5e5cac -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_0da10d73_e01e_4c37_9ddc_17603e5e5cac">
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Uri"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#anyURI"/>
+        <rdfs:label xml:lang="en">uri</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d">
+        <rdfs:label xml:lang="en">properties</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_7f239942_e4e5_4c89_8e45_906797a74bbe -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_7f239942_e4e5_4c89_8e45_906797a74bbe">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">label</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_85e21f8f_f2ca_4bd2_a9b2_d85c8ea98709 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_85e21f8f_f2ca_4bd2_a9b2_d85c8ea98709">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">type</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_bfb8081f_9e71_4c22_80d6_ab822ae30cfb -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_bfb8081f_9e71_4c22_80d6_ab822ae30cfb">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">unit</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLDataProperty_f1585c10_f743_4bc6_be9f_bbbd8b5ff2a0 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#OWLDataProperty_f1585c10_f743_4bc6_be9f_bbbd8b5ff2a0">
+        <rdfs:subPropertyOf rdf:resource="http://www.quaat.com/ontologies#OWLDataProperty_3491c3d9_3cd2_43b7_ba95_4b87434be78d"/>
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+        <rdfs:label xml:lang="en">description</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#dimension_description -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#dimension_description">
+        <rdfs:domain rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#dimension_id -->
+
+    <owl:DatatypeProperty rdf:about="http://www.quaat.com/ontologies#dimension_id"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.quaat.com/ontologies#Dimension -->
+
+    <owl:Class rdf:about="http://www.quaat.com/ontologies#Dimension"/>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#Entity -->
+
+    <owl:Class rdf:about="http://www.quaat.com/ontologies#Entity">
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.quaat.com/ontologies#dimension"/>
+                <owl:someValuesFrom rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.quaat.com/ontologies#property"/>
+                <owl:someValuesFrom rdf:resource="http://www.quaat.com/ontologies#Property"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://www.quaat.com/ontologies#uri"/>
+                <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+                <owl:onClass rdf:resource="http://www.quaat.com/ontologies#Uri"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+    </owl:Class>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#Property -->
+
+    <owl:Class rdf:about="http://www.quaat.com/ontologies#Property"/>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#Shape -->
+
+    <owl:Class rdf:about="http://www.quaat.com/ontologies#Shape">
+        <rdfs:subClassOf rdf:resource="http://www.quaat.com/ontologies#Property"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#Uri -->
+
+    <owl:Class rdf:about="http://www.quaat.com/ontologies#Uri"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_1c7b564c_afbd_4ef3_aa82_ff3f8e24b60a -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_1c7b564c_afbd_4ef3_aa82_ff3f8e24b60a">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <dimension_id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y</dimension_id>
+        <dimension_id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">y-element of a 2D grid</dimension_id>
+        <rdfs:label xml:lang="en">y</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_536f90ad_ad96_47ff_8bf3_5744aad454ff -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_536f90ad_ad96_47ff_8bf3_5744aad454ff">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Property"/>
+        <OWLDataProperty_7f239942_e4e5_4c89_8e45_906797a74bbe rdf:datatype="http://www.w3.org/2001/XMLSchema#string">sea_ice_area_fraction</OWLDataProperty_7f239942_e4e5_4c89_8e45_906797a74bbe>
+        <OWLDataProperty_85e21f8f_f2ca_4bd2_a9b2_d85c8ea98709 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">float</OWLDataProperty_85e21f8f_f2ca_4bd2_a9b2_d85c8ea98709>
+        <OWLDataProperty_bfb8081f_9e71_4c22_80d6_ab822ae30cfb rdf:datatype="http://www.w3.org/2001/XMLSchema#string">fraction</OWLDataProperty_bfb8081f_9e71_4c22_80d6_ab822ae30cfb>
+        <OWLDataProperty_f1585c10_f743_4bc6_be9f_bbbd8b5ff2a0 rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sea ice area fraction</OWLDataProperty_f1585c10_f743_4bc6_be9f_bbbd8b5ff2a0>
+        <rdfs:label xml:lang="en">ice_compactness</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_7600a702_f006_4ef4_b81a_afb2ec823a0a -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_7600a702_f006_4ef4_b81a_afb2ec823a0a">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <hasDimension rdf:resource="http://www.quaat.com/ontologies#OWLNamedIndividual_9ceee358_f274_4949_a97d_673f458e93ca"/>
+        <hasShape rdf:resource="http://www.quaat.com/ontologies#OWLNamedIndividual_f741ffa6_55a6_4960_a89e_c5f99fa6885b"/>
+        <rdfs:label xml:lang="en">time</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_80d21c5d_70ee_4899_9938_d2a9b5b4475c -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_80d21c5d_70ee_4899_9938_d2a9b5b4475c">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <dimension_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x-element of a 2D grid</dimension_description>
+        <dimension_id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">x</dimension_id>
+        <rdfs:label xml:lang="en">x</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_8cd06d2b_7f03_427e_9f51_9a44fb5a7ea0 -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_8cd06d2b_7f03_427e_9f51_9a44fb5a7ea0">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <hasDimension rdf:resource="http://www.quaat.com/ontologies#OWLNamedIndividual_1c7b564c_afbd_4ef3_aa82_ff3f8e24b60a"/>
+        <rdfs:label xml:lang="en">y</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_9ceee358_f274_4949_a97d_673f458e93ca -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_9ceee358_f274_4949_a97d_673f458e93ca">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Dimension"/>
+        <dimension_description rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time dimension</dimension_description>
+        <dimension_id rdf:datatype="http://www.w3.org/2001/XMLSchema#string">time</dimension_id>
+        <rdfs:label xml:lang="en">time</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_b6601990_dd69_492d_a704_f4984699893c -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_b6601990_dd69_492d_a704_f4984699893c">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Uri"/>
+        <OWLDataProperty_0da10d73_e01e_4c37_9ddc_17603e5e5cac rdf:datatype="http://www.w3.org/2001/XMLSchema#anyURI">com.sintef.soft/ontology/v1/test_ice_u1_v0_f55_more_over_zero</OWLDataProperty_0da10d73_e01e_4c37_9ddc_17603e5e5cac>
+        <rdfs:label xml:lang="en">icedata</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#OWLNamedIndividual_f741ffa6_55a6_4960_a89e_c5f99fa6885b -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#OWLNamedIndividual_f741ffa6_55a6_4960_a89e_c5f99fa6885b">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Shape"/>
+        <hasDimension rdf:resource="http://www.quaat.com/ontologies#OWLNamedIndividual_f741ffa6_55a6_4960_a89e_c5f99fa6885b"/>
+        <hasShape rdf:resource="http://www.quaat.com/ontologies#OWLNamedIndividual_1c7b564c_afbd_4ef3_aa82_ff3f8e24b60a"/>
+        <rdfs:label xml:lang="en">x</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.quaat.com/ontologies#icedata -->
+
+    <owl:NamedIndividual rdf:about="http://www.quaat.com/ontologies#icedata">
+        <rdf:type rdf:resource="http://www.quaat.com/ontologies#Entity"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+
