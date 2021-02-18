@@ -27,7 +27,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ],
     packages=setuptools.find_packages(),
-    package_data={'soft7': ['VERSION']},
+    package_data={'soft7-pkg-quaat': ['VERSION']},
     include_package_data=True,
     python_requires='>=3.7',
 )
