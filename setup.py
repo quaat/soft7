@@ -14,7 +14,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="soft7-pkg-quaat", # Replace with your own username
-    version="0.0.1",
+    version=soft7_version,
     author="Quaat",
     author_email="nims@quaat.com",
     description="SOFT7 semantic interoperability framework",
