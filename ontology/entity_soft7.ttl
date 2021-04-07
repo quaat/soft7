@@ -24,6 +24,23 @@
                rdfs:label "hasDirectPart"@en .
 
 
+###  http://www.quaat.com/ontologies#hasFirstDimension
+:hasFirstDimension rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf :hasFirstElement ;
+                   rdfs:domain :Entity ;
+                   rdfs:range :Dimension ;
+                   rdfs:comment "Refers to the first dimension of an entity."@en ;
+                   rdfs:label "hasFirstDimension"@en .
+
+
+###  http://www.quaat.com/ontologies#hasFirstDimensionValue
+:hasFirstDimensionValue rdf:type owl:ObjectProperty ;
+                        rdfs:subPropertyOf :hasFirstElement ;
+                        rdfs:domain :Object ;
+                        rdfs:range :DimensionValue ;
+                        rdfs:comment "Refers to the first dimension value of a data object."@en .
+
+
 ###  http://www.quaat.com/ontologies#hasFirstElement
 :hasFirstElement rdf:type owl:ObjectProperty ;
                  rdfs:subPropertyOf :hasDirectPart ;
@@ -34,6 +51,22 @@
                  rdfs:range :OrderedElement ;
                  rdfs:comment "The first of an ordered set of direct parts."@en ;
                  rdfs:label "hasFirstElement"@en .
+
+
+###  http://www.quaat.com/ontologies#hasFirstProperty
+:hasFirstProperty rdf:type owl:ObjectProperty ;
+                  rdfs:subPropertyOf :hasFirstElement ;
+                  rdfs:domain :Entity ;
+                  rdfs:range :Property ;
+                  rdfs:comment "Refers to the first property value of an entity."@en .
+
+
+###  http://www.quaat.com/ontologies#hasFirstPropertyValue
+:hasFirstPropertyValue rdf:type owl:ObjectProperty ;
+                       rdfs:subPropertyOf :hasFirstElement ;
+                       rdfs:domain :Object ;
+                       rdfs:range :PropertyValue ;
+                       rdfs:comment "Refers to the first property value of a data object."@en .
 
 
 ###  http://www.quaat.com/ontologies#hasNextElement
@@ -53,13 +86,6 @@
          rdfs:comment "Generic parthood relation. Defines parts of a whole."@en ,
                       "The whole may be a part of itself."@en ;
          rdfs:label "hasPart"@en .
-
-
-###  http://www.quaat.com/ontologies#hasSign
-:hasSign rdf:type owl:ObjectProperty ;
-         rdfs:comment "A sign is a real world object that stands for another real world object."@en ,
-                      "Example: the size of a type (a label stored in memory of a computer) is a real world object that stands for the number of bytes used by one element of the type (a symbolic), which is another real world object."@en ;
-         rdfs:label "hasSign"@en .
 
 
 ###  http://www.quaat.com/ontologies#isConnectedWith
@@ -163,6 +189,15 @@
               rdfs:label "hasPredicate"@en .
 
 
+###  http://www.quaat.com/ontologies#hasSize
+:hasSize rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :hasIntegerValue ;
+         rdfs:domain :Type ;
+         rdfs:range xsd:integer ;
+         rdfs:label "The size of one element of a given type."@en ,
+                    "hasSize"@en .
+
+
 ###  http://www.quaat.com/ontologies#hasStringValue
 :hasStringValue rdf:type owl:DatatypeProperty ;
                 rdfs:range xsd:string ;
@@ -193,16 +228,16 @@
          rdfs:label "hasUUID"@en .
 
 
-###  http://www.quaat.com/ontologies#hasUnitSymbol
-:hasUnitSymbol rdf:type owl:DatatypeProperty ;
-               rdfs:subPropertyOf :hasStringValue ;
-               rdf:type owl:FunctionalProperty ;
-               rdfs:domain :Unit ;
-               rdfs:range xsd:string ;
-               rdfs:comment """Examples: 
+###  http://www.quaat.com/ontologies#hasUnit
+:hasUnit rdf:type owl:DatatypeProperty ;
+         rdfs:subPropertyOf :hasStringValue ;
+         rdf:type owl:FunctionalProperty ;
+         rdfs:range xsd:string ;
+         rdfs:comment """Examples: 
 m
 m/s"""@en ,
-                            "Refer to a valid unit symbol."@en .
+                      "Refer to a valid unit symbol."@en ;
+         rdfs:label "hasUnit"@en .
 
 
 #################################################################
@@ -226,6 +261,7 @@ m/s"""@en ,
 ###  http://www.quaat.com/ontologies#Array
 :Array rdf:type owl:Class ;
        rdfs:subClassOf :Arrangement ,
+                       :DataModel ,
                        [ rdf:type owl:Restriction ;
                          owl:onProperty :hasDirectPart ;
                          owl:someValuesFrom [ rdf:type owl:Class ;
@@ -281,7 +317,8 @@ m/s"""@en ,
 
 ###  http://www.quaat.com/ontologies#Dimension
 :Dimension rdf:type owl:Class ;
-           rdfs:subClassOf :Type ,
+           rdfs:subClassOf :OrderedElement ,
+                           :Type ,
                            [ rdf:type owl:Restriction ;
                              owl:onProperty :hasNextElement ;
                              owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
@@ -342,12 +379,12 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           owl:someValuesFrom :Property
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasFirstElement ;
+                          owl:onProperty :hasFirstDimension ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :Dimension
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasFirstElement ;
+                          owl:onProperty :hasFirstProperty ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :Property
                         ] ,
@@ -397,12 +434,12 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           owl:someValuesFrom :PropertyValue
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasFirstElement ;
+                          owl:onProperty :hasFirstDimensionValue ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :DimensionValue
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasFirstElement ;
+                          owl:onProperty :hasFirstPropertyValue ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onClass :PropertyValue
                         ] ,
@@ -440,16 +477,12 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
 
 ###  http://www.quaat.com/ontologies#Property
 :Property rdf:type owl:Class ;
-          rdfs:subClassOf :Type ,
+          rdfs:subClassOf :OrderedElement ,
+                          :Type ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasDirectPart ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :Type
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasDirectPart ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :Unit
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasDirectPart ;
@@ -463,6 +496,11 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasLabel ;
+                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onDataRange xsd:string
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasUnit ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onDataRange xsd:string
                           ] ,
@@ -521,6 +559,7 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                          owl:onClass :ShapeElement
                        ] ;
+       owl:disjointWith :Type ;
        rdfs:comment "Shape of a property. It is an ordered list of shape values."@en ;
        rdfs:label "Shape"@en .
 
@@ -543,13 +582,6 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
               rdfs:label "ShapeElement"@en .
 
 
-###  http://www.quaat.com/ontologies#Size
-:Size rdf:type owl:Class ;
-      rdfs:subClassOf :Integer ;
-      rdfs:comment "The number of bytes used by an element of a given type."@en ;
-      rdfs:label "Size"@en .
-
-
 ###  http://www.quaat.com/ontologies#String
 :String rdf:type owl:Class ;
         owl:equivalentClass [ rdf:type owl:Restriction ;
@@ -568,26 +600,12 @@ The Size can be calculated from the length of initial sequence of non-NUL charac
 :Type rdf:type owl:Class ;
       rdfs:subClassOf :DataModel ,
                       [ rdf:type owl:Restriction ;
-                        owl:onProperty :hasSign ;
+                        owl:onProperty :hasSize ;
                         owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onClass :Size
+                        owl:onDataRange xsd:integer
                       ] ;
       rdfs:comment "A data type whos individual are the actual values. It is characterised by its subclasses and its size (number of bytes one element of this type occupies in memory)."@en ;
       rdfs:label "Type"@en .
-
-
-###  http://www.quaat.com/ontologies#Unit
-:Unit rdf:type owl:Class ;
-      owl:equivalentClass [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasUnitSymbol ;
-                            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onDataRange xsd:string
-                          ] ;
-      rdfs:subClassOf :DataModel ;
-      rdfs:comment """Examples:
-\"m\"
-\"m/s\""""@en ;
-      rdfs:label "Unit"@en .
 
 
 #################################################################
@@ -602,15 +620,6 @@ The Size can be calculated from the length of initial sequence of non-NUL charac
                 :Property
                 :Relation
                 :String
-              )
-] .
-
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Object
-                :Shape
-                :Type
-                :Unit
               )
 ] .
 
