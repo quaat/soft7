@@ -3,6 +3,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix emmo: <http://emmo.info/emmo#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @base <http://www.quaat.com/ontologies> .
 
@@ -69,6 +70,13 @@
                        rdfs:comment "Refers to the first property value of a data object."@en .
 
 
+###  http://www.quaat.com/ontologies#hasModel
+:hasModel rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasSign ;
+          rdfs:comment "The object of 'hasModel' is a model that is a simplified representation of the subject aimed to assist describing the subject or to predict its behaviour."@en ;
+          rdfs:label "hasModel"@en .
+
+
 ###  http://www.quaat.com/ontologies#hasNextElement
 :hasNextElement rdf:type owl:ObjectProperty ;
                 rdfs:subPropertyOf :isConnectedWith ;
@@ -88,11 +96,42 @@
          rdfs:label "hasPart"@en .
 
 
+###  http://www.quaat.com/ontologies#hasShape
+:hasShape rdf:type owl:ObjectProperty ;
+          rdfs:subPropertyOf :hasDirectPart ;
+          rdfs:domain :Property ;
+          rdfs:range :Shape ;
+          rdfs:comment "The shape of a property."@en ;
+          rdfs:label "hasShape"@en .
+
+
+###  http://www.quaat.com/ontologies#hasSign
+:hasSign rdf:type owl:ObjectProperty ;
+         rdfs:comment "In EMMO, a sign would relate to what it stand for through a semiotic process."@en ,
+                      "The object of the 'hasSign' relation is a sign that stands for the subject."@en ;
+         rdfs:label "hasSign"@en .
+
+
+###  http://www.quaat.com/ontologies#hasType
+:hasType rdf:type owl:ObjectProperty ;
+         rdfs:subPropertyOf :hasDirectPart ;
+         rdfs:domain :Property ;
+         rdfs:range :Type ;
+         rdfs:comment "The type of a property."@en ;
+         rdfs:label "hasType"@en .
+
+
 ###  http://www.quaat.com/ontologies#isConnectedWith
 :isConnectedWith rdf:type owl:ObjectProperty ,
                           owl:SymmetricProperty ;
                  rdfs:comment "Generic topological relation. Defines how things are connected with each other."@en ;
                  rdfs:label "isConnectedWith"@en .
+
+
+###  http://www.quaat.com/ontologies#isInstanceOf
+:isInstanceOf rdf:type owl:ObjectProperty ;
+              rdfs:subPropertyOf :hasModel ;
+              rdfs:label "isInstanceOf"@en .
 
 
 #################################################################
@@ -120,22 +159,13 @@
                 rdfs:label "hasDescription"@en .
 
 
-###  http://www.quaat.com/ontologies#hasDimensionRef
-:hasDimensionRef rdf:type owl:DatatypeProperty ;
-                 rdfs:subPropertyOf :hasStringValue ;
-                 rdfs:domain :DimensionExpression ;
-                 rdfs:range xsd:string ;
-                 rdfs:comment "Refers to a label of a dimension belonging to the same entity."@en ;
-                 rdfs:label "hasDimensionRef"@en .
-
-
-###  http://www.quaat.com/ontologies#hasDimensionString
-:hasDimensionString rdf:type owl:DatatypeProperty ;
-                    rdfs:subPropertyOf :hasStringValue ;
-                    rdfs:domain :Shape ;
-                    rdfs:range xsd:string ;
-                    rdfs:comment "A mathematical expression for the shape of a property along one dimension. It is expressed as a function of the entity dimension names."@en ;
-                    rdfs:label "hasDimensionString"@en .
+###  http://www.quaat.com/ontologies#hasExpression
+:hasExpression rdf:type owl:DatatypeProperty ;
+               rdfs:subPropertyOf :hasStringValue ;
+               rdfs:domain :Shape ;
+               rdfs:range xsd:string ;
+               rdfs:comment "A mathematical expression for the shape of a property along one dimension. It is expressed as a function of the entity dimension names."@en ;
+               rdfs:label "hasExpression"@en .
 
 
 ###  http://www.quaat.com/ontologies#hasFloatValue
@@ -233,7 +263,7 @@
          rdfs:subPropertyOf :hasStringValue ;
          rdf:type owl:FunctionalProperty ;
          rdfs:range xsd:string ;
-         rdfs:comment """Examples: 
+         rdfs:comment """Examples:
 m
 m/s"""@en ,
                       "Refer to a valid unit symbol."@en ;
@@ -342,19 +372,13 @@ m/s"""@en ,
 :DimensionExpression rdf:type owl:Class ;
                      rdfs:subClassOf :DataModel ,
                                      [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasDimensionRef ;
-                                       owl:someValuesFrom xsd:string
-                                     ] ,
-                                     [ rdf:type owl:Restriction ;
-                                       owl:onProperty :hasDimensionString ;
+                                       owl:onProperty :hasExpression ;
                                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                        owl:onDataRange xsd:string
                                      ] ;
                      rdfs:comment """A mathematical expression that has dimension references as variables. The name of these variables should equal an existing dimension label of the current Entity.
 
-The `hasExpressionString` restriction relates to the expression itself as a string.
-
-The `hasDimensionRef` restrictions relates to the dimension reference variables."""@en ,
+The `hasExpression` restriction relates to the expression itself as a string."""@en ,
                                   "Valid examples include \"N\", \"N+1\" and \"N*M\" given that `N` and `M` are dimension labels of the current Entity."@en ;
                      rdfs:label "DimensionExpression"@en .
 
@@ -362,7 +386,17 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
 ###  http://www.quaat.com/ontologies#DimensionValue
 :DimensionValue rdf:type owl:Class ;
                 rdfs:subClassOf :DataModel ,
-                                :Integer ;
+                                :Integer ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :isInstanceOf ;
+                                  owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :Dimension
+                                ] ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty :hasNextElement ;
+                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                  owl:onClass :DimensionValue
+                                ] ;
                 rdfs:comment "The value of a dimension. It corresponds to the number of elements along a given dimension."@en ;
                 rdfs:label "DimensionValue"@en .
 
@@ -389,11 +423,12 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           owl:onClass :Property
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasDescription ;
-                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onDataRange xsd:string
+                          owl:onProperty :hasURI ;
+                          owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:anyURI
                         ] ;
-        rdfs:comment "Metadata describing data objects (instances of the entity)."@en ;
+        rdfs:comment "Entities should have a human description. However, this description would be a PropertyValue of the Entity defined by a Property of the meta-metadata (or metadata schema) that the Entity is an instance of. Hence, the description is not explicitely declared in the ontology."@en ,
+                     "Metadata describing data objects (instances of the entity)."@en ;
         rdfs:label "Entity"@en .
 
 
@@ -444,12 +479,12 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           owl:onClass :PropertyValue
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasMeta ;
+                          owl:onProperty :isInstanceOf ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                          owl:onDataRange xsd:anyURI
+                          owl:onClass :Entity
                         ] ,
                         [ rdf:type owl:Restriction ;
-                          owl:onProperty :hasURI ;
+                          owl:onProperty :hasMeta ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onDataRange xsd:anyURI
                         ] ,
@@ -457,6 +492,11 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                           owl:onProperty :hasUUID ;
                           owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                           owl:onDataRange xsd:string
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasURI ;
+                          owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                          owl:onDataRange xsd:anyURI
                         ] ;
         rdfs:comment "An instance of a data item or metadata."@en ,
                      "An object is described by an entity (metadata). Entities themselves are objects described by a meta-entity (schema or meta-metadata)."@en ,
@@ -480,19 +520,19 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
           rdfs:subClassOf :OrderedElement ,
                           :Type ,
                           [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasDirectPart ;
+                            owl:onProperty :hasType ;
                             owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :Type
-                          ] ,
-                          [ rdf:type owl:Restriction ;
-                            owl:onProperty :hasDirectPart ;
-                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                            owl:onClass :Shape
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasNextElement ;
                             owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                             owl:onClass :Property
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasShape ;
+                            owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                            owl:onClass :Shape
                           ] ,
                           [ rdf:type owl:Restriction ;
                             owl:onProperty :hasLabel ;
@@ -520,6 +560,16 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                                  owl:unionOf ( :Array
                                                :Type
                                              )
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :isInstanceOf ;
+                                 owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :Property
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasNextElement ;
+                                 owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+                                 owl:onClass :PropertyValue
                                ] ;
                rdfs:comment "The value of a property. It can either be a scalar (type) or an array of scalars."@en ;
                rdfs:label "PropertyValue"@en .
@@ -590,7 +640,7 @@ The `hasDimensionRef` restrictions relates to the dimension reference variables.
                               owl:onDataRange xsd:string
                             ] ;
         rdfs:subClassOf :Type ;
-        rdfs:comment """An UTF-encoded and NUL-terminated string. 
+        rdfs:comment """An UTF-encoded and NUL-terminated string.
 
 The Size can be calculated from the length of initial sequence of non-NUL characters plus the terminating NUL character."""@en ;
         rdfs:label "String"@en .
