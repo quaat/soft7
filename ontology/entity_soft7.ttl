@@ -219,15 +219,6 @@
               rdfs:label "hasPredicate"@en .
 
 
-###  http://www.quaat.com/ontologies#hasSize
-:hasSize rdf:type owl:DatatypeProperty ;
-         rdfs:subPropertyOf :hasIntegerValue ;
-         rdfs:domain :Type ;
-         rdfs:range xsd:integer ;
-         rdfs:label "The size of one element of a given type."@en ,
-                    "hasSize"@en .
-
-
 ###  http://www.quaat.com/ontologies#hasStringValue
 :hasStringValue rdf:type owl:DatatypeProperty ;
                 rdfs:range xsd:string ;
@@ -268,6 +259,13 @@ m
 m/s"""@en ,
                       "Refer to a valid unit symbol."@en ;
          rdfs:label "hasUnit"@en .
+
+
+###  http://www.quaat.com/ontologies#hasValue
+:hasValue rdf:type owl:DatatypeProperty ;
+          rdfs:range rdf:PlainLiteral ;
+          rdfs:label "Generic literal value."@en ,
+                     "hasValue"@en .
 
 
 #################################################################
@@ -570,6 +568,10 @@ The `hasExpression` restriction relates to the expression itself as a string."""
                                  owl:onProperty :hasNextElement ;
                                  owl:maxQualifiedCardinality "1"^^xsd:nonNegativeInteger ;
                                  owl:onClass :PropertyValue
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasValue ;
+                                 owl:someValuesFrom rdf:PlainLiteral
                                ] ;
                rdfs:comment "The value of a property. It can either be a scalar (type) or an array of scalars."@en ;
                rdfs:label "PropertyValue"@en .
@@ -648,12 +650,7 @@ The Size can be calculated from the length of initial sequence of non-NUL charac
 
 ###  http://www.quaat.com/ontologies#Type
 :Type rdf:type owl:Class ;
-      rdfs:subClassOf :DataModel ,
-                      [ rdf:type owl:Restriction ;
-                        owl:onProperty :hasSize ;
-                        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
-                        owl:onDataRange xsd:integer
-                      ] ;
+      rdfs:subClassOf :DataModel ;
       rdfs:comment "A data type whos individual are the actual values. It is characterised by its subclasses and its size (number of bytes one element of this type occupies in memory)."@en ;
       rdfs:label "Type"@en .
 

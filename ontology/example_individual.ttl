@@ -15,68 +15,84 @@
 #    Annotation properties
 #################################################################
 
-###  http://www.quaat.com/ontologies/example_individual#hasDescription
+###  http://www.quaat.com/ontologies#hasDescription
 :hasDescription rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasDirectPart
+###  http://www.quaat.com/ontologies#hasDirectPart
 :hasDirectPart rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasExpression
+###  http://www.quaat.com/ontologies#hasExpression
 :hasExpression rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasFirstDimension
+###  http://www.quaat.com/ontologies#hasFirstDimension
 :hasFirstDimension rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasFirstElement
+###  http://www.quaat.com/ontologies#hasFirstElement
 :hasFirstElement rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasFirstProperty
+###  http://www.quaat.com/ontologies#hasFirstProperty
 :hasFirstProperty rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasLabel
+###  http://www.quaat.com/ontologies#hasLabel
 :hasLabel rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasMeta
+###  http://www.quaat.com/ontologies#hasMeta
 :hasMeta rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasNextElement
+###  http://www.quaat.com/ontologies#hasNextElement
 :hasNextElement rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasShape
+###  http://www.quaat.com/ontologies#hasShape
 :hasShape rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasType
+###  http://www.quaat.com/ontologies#hasType
 :hasType rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasURI
+###  http://www.quaat.com/ontologies#hasURI
 :hasURI rdf:type owl:AnnotationProperty .
 
 
-###  http://www.quaat.com/ontologies/example_individual#hasUUID
+###  http://www.quaat.com/ontologies#hasUUID
 :hasUUID rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.quaat.com/ontologies#DimensionExpression
+:DimensionExpression rdf:type owl:Class .
+
+
+###  http://www.quaat.com/ontologies#ShapeElement
+:ShapeElement rdf:type owl:Class .
+
+
+###  http://www.quaat.com/ontologies#String
+:String rdf:type owl:Class .
 
 
 #################################################################
 #    Individuals
 #################################################################
 
-###  http://www.quaat.com/ontologies/example_individual#dimension
+###  http://www.quaat.com/ontologies#dimension
 :dimension rdf:type owl:NamedIndividual ,
                     :Dimension .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema
+###  http://www.quaat.com/ontologies#entity_schema
 :entity_schema rdf:type owl:NamedIndividual ,
                         :Entity ;
                :hasFirstDimension :entity_schema_dim0 ;
@@ -86,7 +102,7 @@
                :hasUUID "57742a73-ba65-5797-aebf-c1a270c4d02b" .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_dim0
+###  http://www.quaat.com/ontologies#entity_schema_dim0
 :entity_schema_dim0 rdf:type owl:NamedIndividual ,
                              :Dimension ;
                     :hasDescription "Number of dimensions."@en ;
@@ -94,14 +110,14 @@
                     :hasNextElement :entity_schema_dim1 .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_dim1
+###  http://www.quaat.com/ontologies#entity_schema_dim1
 :entity_schema_dim1 rdf:type owl:NamedIndividual ,
                              :Dimension ;
                     :hasDescription "Number of properties."@en ;
                     :hasLabel "nproperties" .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop0
+###  http://www.quaat.com/ontologies#entity_schema_prop0
 :entity_schema_prop0 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "Entity name."@en ;
@@ -111,7 +127,7 @@
                      rdfs:comment "The name can be inferred from the URI of the entity described. Hence, this property is redundant."@en .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop1
+###  http://www.quaat.com/ontologies#entity_schema_prop1
 :entity_schema_prop1 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "Entity version. Ex: \"0.2.3\""@en ;
@@ -121,7 +137,7 @@
                      rdfs:comment "The version can be inferred from the URI of the entity described. Hence, this property is redundant."@en .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop2
+###  http://www.quaat.com/ontologies#entity_schema_prop2
 :entity_schema_prop2 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "Entity namespace. Ex: \"http://sintef.no/meta\""@en ;
@@ -131,7 +147,7 @@
                      rdfs:comment "The namespace can be inferred from the URI of the entity described. Hence, this property is redundant."@en .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop3
+###  http://www.quaat.com/ontologies#entity_schema_prop3
 :entity_schema_prop3 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "Human description of the entity."@en ;
@@ -140,7 +156,7 @@
                      :hasType :string .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop4
+###  http://www.quaat.com/ontologies#entity_schema_prop4
 :entity_schema_prop4 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "List of entity dimensions."@en ;
@@ -150,25 +166,25 @@
                      :hasType :dimension .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop4_dimexpr0
+###  http://www.quaat.com/ontologies#entity_schema_prop4_dimexpr0
 :entity_schema_prop4_dimexpr0 rdf:type owl:NamedIndividual ,
                                        :DimensionExpression ;
                               :hasExpression "ndimensions" .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop4_shape
+###  http://www.quaat.com/ontologies#entity_schema_prop4_shape
 :entity_schema_prop4_shape rdf:type owl:NamedIndividual ,
                                     :Shape ;
                            :hasFirstElement :entity_schema_prop4_shape0 .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop4_shape0
+###  http://www.quaat.com/ontologies#entity_schema_prop4_shape0
 :entity_schema_prop4_shape0 rdf:type owl:NamedIndividual ,
                                      :ShapeElement ;
                             :hasDirectPart :entity_schema_prop4_dimexpr0 .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop5
+###  http://www.quaat.com/ontologies#entity_schema_prop5
 :entity_schema_prop5 rdf:type owl:NamedIndividual ,
                               :Property ;
                      :hasDescription "List of entity properties."@en ;
@@ -177,30 +193,30 @@
                      :hasType :property .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop5_dimexpr0
+###  http://www.quaat.com/ontologies#entity_schema_prop5_dimexpr0
 :entity_schema_prop5_dimexpr0 rdf:type owl:NamedIndividual ,
                                        :DimensionExpression ;
                               :hasExpression "ndimensions" .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop5_shape
+###  http://www.quaat.com/ontologies#entity_schema_prop5_shape
 :entity_schema_prop5_shape rdf:type owl:NamedIndividual ,
                                     :Shape ;
                            :hasFirstElement :entity_schema_prop5_shape0 .
 
 
-###  http://www.quaat.com/ontologies/example_individual#entity_schema_prop5_shape0
+###  http://www.quaat.com/ontologies#entity_schema_prop5_shape0
 :entity_schema_prop5_shape0 rdf:type owl:NamedIndividual ,
                                      :ShapeElement ;
                             :hasDirectPart :entity_schema_prop5_dimexpr0 .
 
 
-###  http://www.quaat.com/ontologies/example_individual#property
+###  http://www.quaat.com/ontologies#property
 :property rdf:type owl:NamedIndividual ,
                    :Property .
 
 
-###  http://www.quaat.com/ontologies/example_individual#string
+###  http://www.quaat.com/ontologies#string
 :string rdf:type owl:NamedIndividual ,
                  :String .
 
